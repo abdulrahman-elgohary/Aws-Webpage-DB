@@ -1,4 +1,4 @@
-<?php include "../inc/dbinfo.inc"; ?>
+<?php include "../configuration/configuration.inc"; ?>
 <html>
 <body>
 <h1>Sample page</h1>

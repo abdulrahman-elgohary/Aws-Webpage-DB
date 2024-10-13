@@ -2,8 +2,24 @@
 <html>
 <body>
 <h1>Sample page</h1>
-<?php
 
+<?php
+  /* Fetch EC2 metadata */
+  function fetch_metadata($path) {
+    $url = "http://169.254.169.254/latest/meta-data/" . $path;
+    return file_get_contents($url);
+  }
+
+  /* Display EC2 metadata */
+  $public_ip = fetch_metadata('public-ipv4');
+  $availability_zone = fetch_metadata('placement/availability-zone');
+
+  echo "<h2>EC2 Instance Metadata</h2>";
+  echo "<p><strong>Public IP Address:</strong> $public_ip</p>";
+  echo "<p><strong>Availability Zone:</strong> $availability_zone</p>";
+?>
+
+<?php
   /* Connect to MySQL and select the database. */
   $connection = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD);
 
@@ -69,15 +85,12 @@ while($query_data = mysqli_fetch_row($result)) {
 
 <!-- Clean up. -->
 <?php
-
   mysqli_free_result($result);
   mysqli_close($connection);
-
 ?>
 
 </body>
 </html>
-
 
 <?php
 
@@ -93,8 +106,7 @@ function AddEmployee($connection, $name, $address) {
 
 /* Check whether the table exists and, if not, create it. */
 function VerifyEmployeesTable($connection, $dbName) {
-  if(!TableExists("EMPLOYEES", $connection, $dbName))
-  {
+  if(!TableExists("EMPLOYEES", $connection, $dbName)) {
      $query = "CREATE TABLE EMPLOYEES (
          ID int(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
          NAME VARCHAR(45),
@@ -117,5 +129,4 @@ function TableExists($tableName, $connection, $dbName) {
 
   return false;
 }
-?>                        
-                
+?>

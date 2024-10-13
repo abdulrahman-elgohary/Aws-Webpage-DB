@@ -15,8 +15,12 @@
   $availability_zone = fetch_metadata('placement/availability-zone');
 
   echo "<h2>EC2 Instance Metadata</h2>";
-  echo "<p><strong>Public IP Address:</strong> $public_ip</p>";
-  echo "<p><strong>Availability Zone:</strong> $availability_zone</p>";
+  
+  // Display the Public IP in bold and red
+  echo "<p><strong style='color: red;'>Public IP Address:</strong> <strong style='color: red;'>$public_ip</strong></p>";
+  
+  // Display the Availability Zone in bold and blue
+  echo "<p><strong style='color: blue;'>Availability Zone:</strong> <strong style='color: blue;'>$availability_zone</strong></p>";
 ?>
 
 <?php
@@ -69,7 +73,6 @@
   </tr>
 
 <?php
-
 $result = mysqli_query($connection, "SELECT * FROM EMPLOYEES");
 
 while($query_data = mysqli_fetch_row($result)) {

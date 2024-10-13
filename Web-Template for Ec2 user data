@@ -10,17 +10,18 @@ find /var/www -type f -exec sudo chmod 0664 {} \;
 mkdir -p /var/www/configuration
 echo -e "<?php" > /var/www/configuration/configuration.inc
 
-#Change the end-point-username-password-db-server name
-echo "define('DB_SERVER', 'rds-database.cxme2eegu0tq.us-east-1.rds.amazonaws.com');" >> /var/www/configuration/configuration.inc
+#Change the (end-point--username--password--database name)
+
+echo "define('DB_SERVER', 'database-rds.cxme2eegu0tq.us-east-1.rds.amazonaws.com');" >> /var/www/configuration/configuration.inc
 
 echo "define('DB_USERNAME', 'admin');" >> /var/www/configuration/configuration.inc
 
 echo "define('DB_PASSWORD', '12345678');" >> /var/www/configuration/configuration.inc
 
-echo "define('DB_DATABASE', 'sample');" >> /var/www/configuration/configuration.inc
+echo "define('DB_DATABASE', 'aws_webserver');" >> /var/www/configuration/configuration.inc
 
 echo "?>" >> /var/www/configuration/configuration.inc
 
-wget https://github.com/abdulrahman-elgohary/Aws-Webpage-DB/blob/main/Sample.php
+wget https://raw.githubusercontent.com/abdulrahman-elgohary/Webpage-RDS-AWS/refs/heads/main/Webpage.php
 
-sudo mv Sample.php /var/www/html/index.php
+sudo mv Webpage.php /var/www/html/index.php

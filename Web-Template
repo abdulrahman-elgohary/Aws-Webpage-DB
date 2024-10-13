@@ -1,0 +1,26 @@
+#!/bin/bash
+sudo dnf update -y
+sudo dnf install -y httpd php php-mysqli mariadb105
+sudo systemctl enable --now httpd
+sudo usermod -a -G apache ec2-user
+sudo chown -R ec2-user:apache /var/www
+sudo chmod 2775 /var/www
+find /var/www -type d -exec sudo chmod 2775 {} \;
+find /var/www -type f -exec sudo chmod 0664 {} \;
+mkdir -p /var/www/configuration
+echo -e "<?php" > /var/www/configuration/configuration.inc
+
+#Change the end-point-username-password-db-server name
+echo "define('DB_SERVER', 'rds-database.cxme2eegu0tq.us-east-1.rds.amazonaws.com');" >> /var/www/configuration/configuration.inc
+
+echo "define('DB_USERNAME', 'admin');" >> /var/www/configuration/configuration.inc
+
+echo "define('DB_PASSWORD', '12345678');" >> /var/www/configuration/configuration.inc
+
+echo "define('DB_DATABASE', 'sample');" >> /var/www/configuration/configuration.inc
+
+echo "?>" >> /var/www/configuration/configuration.inc
+
+wget https://github.com/abdulrahman-elgohary/Aws-Webpage-DB/blob/main/Sample.php
+
+sudo mv Sample.php /var/www/html/index.php

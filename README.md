@@ -1,7 +1,7 @@
-# Auto-Scaling Web Application on AWS with RDS Integration
 
 ## Project Overview
 This project demonstrates how to deploy a web application using Auto Scaling, an Application Load Balancer (ALB), and an RDS instance on AWS. The system automatically scales based on load and includes high availability features such as RDS Multi-AZ deployment and failover capabilities.
+![Zoohan us-west-1](https://github.com/user-attachments/assets/afc43fc3-0296-4753-bfab-3099322c7b7b)
 
 ## Features
 - **Auto Scaling Group (ASG):** Automatically scales the number of EC2 instances based on traffic load.
@@ -14,7 +14,7 @@ This project demonstrates how to deploy a web application using Auto Scaling, an
 **1. Set Up VPC and Subnets:**
 - Create a VPC with public and private subnets across multiple Availability Zones (AZs).
 - Deploy NAT Gateways in public subnets to enable outbound internet access for instances in private subnets.
-  
+
 **2. Set Up RDS (Multi-AZ):**
 - Create an RDS instance with Multi-AZ support to ensure high availability.
 - Configure the database for the web application to store data such as employee records.
